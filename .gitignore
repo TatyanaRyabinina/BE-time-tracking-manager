@@ -1,0 +1,35 @@
+# dependencies
+/node_modules
+package-lock.json
+
+#docs
+/apidoc
+
+# IDE
+/.idea
+/.awcache
+/.vscode
+
+# misc
+npm-debug.log
+.DS_Store
+
+# tests
+/test
+/coverage
+/.nyc_output
+
+# dist
+/dist
+
+# configs
+src/config/local.json
+src/migrations/config.local.json
+
+# docker
+/docker
+
+yarn-error.log
+
+# env
+.env

@@ -1,0 +1,22 @@
+version: "1"
+volumes:
+  mysql_data:
+services:
+  redis:
+    image: redis:alpine
+    ports:
+    - 6379:6379
+    command: redis-server --appendonly yes
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: "time-management"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command: mysqld --max-connections=1000 --sql-mode=""
