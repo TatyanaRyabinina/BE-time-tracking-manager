@@ -5,7 +5,10 @@
   "main": "dist/app",
   "scripts": {
     "serve:local": "./node_modules/.bin/gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "docker-compose up -d",
+    "test": "jest --config jest.config.js",
+    "tslint": "node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
+    "precommit": "yarn tslint & test"
   },
   "author": "ildar.kulmuhametov@yojji.io",
   "license": "ISC",
