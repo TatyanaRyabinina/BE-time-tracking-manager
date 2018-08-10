@@ -9,21 +9,22 @@ const paths = [`${source}/**/*.ts`, `${source}/*.ts`];
 
 gulp.task('tsc', () => {
   const project = ts.createProject('tsconfig.json');
-  const stream = gulp.src(paths, { base: `./${source}` })
-      .pipe(sourcemaps.init())
-      .pipe(project())
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(dist));
-      return stream;
+  const stream = gulp
+    .src(paths, { base: `./${source}` })
+    .pipe(sourcemaps.init())
+    .pipe(project())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(dist));
+  return stream;
 });
 
 gulp.task('serve', ['tsc'], () => {
   const stream = nodemon({
-    script: 'dist/server.js',
-    env: { 'NODE_ENV': 'local' },
+    script: 'dist/app.js',
+    env: { NODE_ENV: 'local' },
     watch: ['dist/**'],
     quiet: true,
-    delay: 0.3,
+    delay: 0.3
   });
   return stream;
 });
