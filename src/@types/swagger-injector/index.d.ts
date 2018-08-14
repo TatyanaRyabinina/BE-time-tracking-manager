@@ -1,5 +1,5 @@
 declare module 'swagger-injector' {
-  import { Middleware } from "koa";  
+  import { Middleware } from 'koa';
   interface ISwaggerOptions {
     path: string;
   }
