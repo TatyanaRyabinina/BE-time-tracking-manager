@@ -23,4 +23,7 @@ Open localhost:${port:in:src/config/local.json} in your browser
 # Code
 Style rules are enforced through [TSLint](https://palantir.github.io/tslint/usage/cli/).
 To validate your code run:
+```sh
+$ yarn tslint
+```
 
