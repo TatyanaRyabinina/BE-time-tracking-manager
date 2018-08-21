@@ -17,13 +17,23 @@
                 "named-imports-order": "any"
             }
         ],
+        "indent": {
+            "options": [
+                "spaces",
+                2
+            ]
+        },
         "eofline": false,
         "linebreak-style": false,
         "member-ordering": false,
         "one-line": false,
         "array-type": false,
         "no-bitwise": false,
-        "variable-name": false
+        "variable-name": false,
+        "no-console": [
+            true,
+            //"log"
+        ]
     },
     "rulesDirectory": []
 }
