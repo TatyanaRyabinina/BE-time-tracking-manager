@@ -2,15 +2,15 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Yet Another Node.js Blogg Application API",
-    "description": "Yet Another Node.js Blogg Application API",
+    "title": "Time Tracker",
+    "description": "",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:3000",
-  "basePath": "/api/v1",
+  "host": "localhost:8081",
+  "basePath": "/",
   "tags": [
     {
       "name": "Users",
@@ -27,19 +27,19 @@
     "application/json"
   ],
   "paths": {
-    "/users": {
+    "/auth/send-magic-link": {
       "post": {
         "tags": [
-          "Users"
+          "Auth"
         ],
-        "description": "Create new user in system",
+        "description": "Check user in db",
         "parameters": [
           {
-            "name": "user",
+            "name": "email",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Email that we should check",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/AuthEmail"
             }
           }
         ],
@@ -48,86 +48,38 @@
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "User is verified",
             "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get all users in system",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Users"
+              "$ref": "#/definitions/MagicLinkToken"
             }
           }
         }
       }
     },
-    "/users/{userId}": {
-      "parameters": [
-        {
-          "name": "userId",
-          "in": "path",
-          "required": true,
-          "description": "ID of user that we want to find",
-          "type": "string"
-        }
-      ],
-      "get": {
+    "/auth/verify-magic-link": {
+      "post": {
         "tags": [
-          "Users"
+          "Auth"
         ],
-        "summary": "Get user with given ID",
-        "responses": {
-          "200": {
-            "description": "User is found",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete user with given ID",
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "put": {
-        "summary": "Update user with give ID",
-        "tags": [
-          "Users"
-        ],
+        "description": "Check token",
         "parameters": [
           {
-            "name": "user",
+            "name": "token",
             "in": "body",
-            "description": "User with new values of properties",
+            "description": "Token that we should check",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/AuthToken"
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Token is verified",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/UserToken"
             }
           }
         }
@@ -135,31 +87,88 @@
     }
   },
   "definitions": {
-    "User": {
+    "AuthEmail": {
+      "type": "object",
       "required": [
-        "email",
-        "_id"
+        "email"
       ],
       "properties": {
-        "_id": {
+        "email": {
           "type": "string",
-          "uniqueItems": true
+          "format": "email"
+        }
+      }
+    },
+    "MagicLinkToken": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "magicLinkToken": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "AuthToken": {
+      "type": "object",
+      "required": [
+        "email",
+        "token"
+      ],
+      "properties": {
+        "token": {
+          "type": "string"
         },
         "email": {
           "type": "string",
-          "uniqueItems": true
+          "format": "email"
+        }
+      }
+    },
+    "UserToken": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "user": {
+              "type": "object",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
         },
         "lastName": {
           "type": "string"
         },
-        "firstName": {
-          "type": "string"
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "birthdayDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hireDate": {
+          "type": "string",
+          "format": "date-time"
         }
       }
-    },
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
     }
   }
 }

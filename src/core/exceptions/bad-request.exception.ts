@@ -1,15 +1,15 @@
-import { notFound } from 'boom';
+import { badRequest } from 'boom';
 
 interface IExceptionBody {
   message: string;
   statusCode: number;
 }
 
-export default class NotFoundException extends Error {
+export default class ValidationException extends Error {
   public body: IExceptionBody;
 
   constructor(message: string) {
     super(message);
-    this.body = notFound(message).output.payload;
+    this.body = badRequest(message).output.payload;
   }
 }
