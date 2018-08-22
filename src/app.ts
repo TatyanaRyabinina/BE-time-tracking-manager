@@ -1,4 +1,5 @@
 import * as Koa from 'koa';
+import cors from 'koa2-cors';
 import * as bodyParser from 'koa-bodyparser';
 import * as path from 'path';
 import * as swagger from 'swagger-injector';
@@ -10,11 +11,12 @@ const port = config.get('app:port');
 const app = new Koa();
 
 app.use(bodyParser());
+app.use(cors());
 app.use(
   swagger.koa({
     path: path.join(__dirname, '../swagger.json'),
   },
-));
+  ));
 app.use(configureAppRouter());
 
 app.listen(port);
