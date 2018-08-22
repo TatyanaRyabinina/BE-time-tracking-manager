@@ -12,7 +12,7 @@ export const create = (email: string): Promise<string> => {
       token,
       { email: email.toLowerCase() },
       () => {
-        /*const { expiresInDays } = config.get('oneTimeTokenExpireDays');
+        const expiresInDays = config.get('oneTimeTokenExpireDays');
         redisClient().expireat(
           token,
           moment(new Date())
@@ -21,10 +21,10 @@ export const create = (email: string): Promise<string> => {
           (err: Error) => {
             if (err) {
               reject(err);
-            }*/
-        resolve(token);
-        //   },
-        // );
+            }
+            resolve(token);
+          },
+        );
       },
     );
   });
@@ -33,7 +33,6 @@ export const create = (email: string): Promise<string> => {
 export const validate = (email: string, token: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     redisClient().hgetall(token, (err: Error, obj: { email: string }) => {
-      console.log(token, err, obj);
       if (err) {
         reject(err);
       }
