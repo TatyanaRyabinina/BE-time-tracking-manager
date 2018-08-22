@@ -8,7 +8,7 @@ import { config } from '../../config';
 const verifyUser = async (email: string) => {
   const user = await UserService.findUserByEmail(email);
   if (user) {
-    return await create(email);
+    return create(email);
   } else {
     throw new NotFoundException(USER_NOT_FOUND);
   }

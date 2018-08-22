@@ -1,5 +1,4 @@
 import { Context } from 'koa';
-import { Middleware } from 'koa';
 
 export default async (ctx: Context, next: () => Promise<void>) => {
   try {
