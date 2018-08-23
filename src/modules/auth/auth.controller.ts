@@ -1,7 +1,5 @@
-import jwt from 'jsonwebtoken';
 import { Context } from 'koa';
 import * as Router from 'koa-router';
-import { config } from '../../config';
 import { IEmailBody, IMagicLinkBody } from './auth.interface';
 import AuthService from './auth.service';
 import emailValidate from './dto/magic-link.dto';
