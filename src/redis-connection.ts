@@ -1,7 +1,7 @@
 import * as redis from 'redis';
 import { config } from './config';
 
-let redisClient = null;
+let redisClient: redis.RedisClient = null;
 
 export default () => redisClient;
 

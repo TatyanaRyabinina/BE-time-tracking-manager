@@ -1,12 +1,6 @@
-import { Context } from 'koa';
+import { Context, Request } from 'koa';
 import * as Yup from 'yup';
 import ValidationException from '../exceptions/bad-request.exception';
-/*
-const enum ValidationTarget {
-  body,
-  params,
-  query
-}*/
 
 const validateMiddleware = (validationSchema: Yup.ObjectSchema<{}>, target: string) => {
   return (ctx: Context, next: () => Promise<void>) => {
