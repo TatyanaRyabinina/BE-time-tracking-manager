@@ -2,8 +2,8 @@ import { Context } from 'koa';
 import * as Router from 'koa-router';
 import { IEmailBody, IMagicLinkBody } from './auth.interface';
 import AuthService from './auth.service';
-import emailValidate from './dto/magic-link.dto';
-import tokenValidate from './dto/token.dto';
+// import emailValidate from './dto/magic-link.dto';
+// import tokenValidate from './dto/token.dto';
 
 const sendMagicLink = async (ctx: Context) => {
   const { email } = ctx.request.body as IEmailBody;
@@ -25,7 +25,7 @@ const verifyMagicLink = async (ctx: Context) => {
 
 export default () => {
   const authController: Router = new Router();
-  authController.post('/auth/send-magic-link', emailValidate, sendMagicLink);
-  authController.post('/auth/verify-magic-link', tokenValidate, verifyMagicLink);
+  // authController.post('/auth/send-magic-link', emailValidate, sendMagicLink);
+  // authController.post('/auth/verify-magic-link', tokenValidate, verifyMagicLink);
   return authController.routes();
 };

@@ -1,15 +1,19 @@
-import { Context, Request } from 'koa';
-import * as Yup from 'yup';
-import ValidationException from '../exceptions/bad-request.exception';
+import { Context } from 'koa';
+import { validate } from 'class-validator';
+import { plainToClass } from 'class-transformer';
+import { ValidationException } from '../exceptions/validation.exception';
+import { ClassType } from 'class-transformer/ClassTransformer';
 
-const validateMiddleware = (validationSchema: Yup.ObjectSchema<{}>, target: string) => {
-  return (ctx: Context, next: () => Promise<void>) => {
-    try {
-      validationSchema.validateSync(ctx.request[target]);
+const validateMiddleware = (ToValidateClass: ClassType<{}>, target: string) => {
+  return async (ctx: Context, next: () => Promise<void>) => {
+      const toValidateInstance = plainToClass(ToValidateClass, ctx.request[target])
+      const errors = await validate(toValidateInstance, {
+        validationError: { target: false },
+      });
+      if (errors.length) {
+        throw new ValidationException(null, errors);
+      }
       return next();
-    } catch (err) {
-      throw new ValidationException(err);
-    }
   };
 };
 

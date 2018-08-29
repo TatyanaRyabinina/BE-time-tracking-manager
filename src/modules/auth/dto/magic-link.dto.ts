@@ -1,10 +1,10 @@
-import * as Yup from 'yup';
-import { EMAIL_IS_EMPTY } from '../../../core/constants/error.constants';
-import validateMiddleware from '../../../core/middleware/validate.middleware';
+// import * as Yup from 'yup';
+// import { EMAIL_IS_EMPTY } from '../../../core/constants/error.constants';
+// import validateMiddleware from '../../../core/middleware/validate.middleware';
 
-const validationSchema: Yup.ObjectSchema<{}> = Yup.object().shape({
-  email: Yup.string().email()
-    .required(EMAIL_IS_EMPTY),
-});
+// const validationSchema: Yup.ObjectSchema<{}> = Yup.object().shape({
+//   email: Yup.string().email()
+//     .required(EMAIL_IS_EMPTY),
+// });
 
-export default validateMiddleware(validationSchema, 'body');
+// export default validateMiddleware(validationSchema, 'body');
