@@ -8,5 +8,5 @@ export const config = nconf
   .argv()
   .env()
   .file({
-    file: path.join(__dirname, `./${env}.json`),
+    file: path.join(__dirname, `../../app-configs/${env}.json`),
   });

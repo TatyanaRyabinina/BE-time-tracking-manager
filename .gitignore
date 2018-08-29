@@ -23,7 +23,7 @@ npm-debug.log
 /dist
 
 # configs
-src/config/local.json
+app-configs/local.json
 src/migrations/config.local.json
 
 # docker
