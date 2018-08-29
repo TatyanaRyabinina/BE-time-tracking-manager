@@ -1,10 +1,6 @@
-// import * as Yup from 'yup';
-// import { EMAIL_IS_EMPTY } from '../../../core/constants/error.constants';
-// import validateMiddleware from '../../../core/middleware/validate.middleware';
+import { IsEmail } from 'class-validator';
 
-// const validationSchema: Yup.ObjectSchema<{}> = Yup.object().shape({
-//   email: Yup.string().email()
-//     .required(EMAIL_IS_EMPTY),
-// });
-
-// export default validateMiddleware(validationSchema, 'body');
+export class MagicLinkDto {
+  @IsEmail()
+  public email: string;
+}
