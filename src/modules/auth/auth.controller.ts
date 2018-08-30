@@ -8,13 +8,8 @@ import { TokenDto } from './dto/token.dto';
 
 const sendMagicLink = async (ctx: Context) => {
   const { email } = ctx.request.body as IEmailBody;
-  const token = await AuthService.verifyUser(email);
-  ctx.status = 200;
-  ctx.body = {
-    data: {
-      magicLinkToken: token,
-    },
-  };
+  await AuthService.verifyUser(email);
+  ctx.body = {};
 };
 
 const verifyMagicLink = async (ctx: Context) => {

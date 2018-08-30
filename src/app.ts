@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
+import * as logger from 'koa-logger';
 import * as cors from 'koa2-cors';
 import * as path from 'path';
 import * as swagger from 'swagger-injector';
@@ -11,6 +12,7 @@ import { configureAppRouter } from './routing';
 
 const port = config.get('app:port');
 const app = new Koa();
+app.use(logger());
 app.use(bodyParser());
 app.use(cors());
 app.use(exceptionFilter);
