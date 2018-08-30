@@ -32,7 +32,7 @@
         "variable-name": false,
         "no-console": [
             true,
-            //"log"
+            "error"
         ]
     },
     "rulesDirectory": []

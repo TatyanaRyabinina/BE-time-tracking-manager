@@ -5,17 +5,17 @@ import { Model, Column, ForeignKey, Table } from 'sequelize-typescript';
 })
 export default class User extends Model<User> {
   @Column
-  firstName: string;
+  public firstName: string;
 
   @Column
-  lastName: string;
+  public lastName: string;
 
   @Column
-  email: string;
+  public email: string;
 
   @Column
-  birthdayDate: Date;
+  public birthdayDate: Date;
 
   @Column
-  hireDate: Date;
+  public hireDate: Date;
 }

@@ -1,7 +1,9 @@
 import { Model, Column, ForeignKey, HasMany, Table } from 'sequelize-typescript';
 
-@Table
+@Table({
+  tableName: 'Departments',
+})
 export class Department extends Model<Department> {
   @Column
-  departmentName: string;
+  public departmentName: string;
 }
