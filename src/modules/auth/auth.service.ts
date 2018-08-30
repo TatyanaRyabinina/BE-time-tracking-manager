@@ -1,17 +1,11 @@
 import * as jwt from 'jsonwebtoken';
-import { USER_NOT_FOUND } from '../../core/constants/error.constants';
-import NotFoundException from '../../core/exceptions/not-found.exception';
+import { config } from '../../config';
 import { create, validate } from '../redis/redis.service';
 import UserService from '../users/users.service';
-import { config } from '../../config';
 
 const verifyUser = async (email: string) => {
-  const user = await UserService.findUserByEmail(email);
-  if (user) {
-    return create(email);
-  } else {
-    throw new NotFoundException(USER_NOT_FOUND);
-  }
+  await UserService.findUserByEmail(email);
+  return create(email);
 };
 
 const verifyToken = async (email: string, magicLink: string) => {
