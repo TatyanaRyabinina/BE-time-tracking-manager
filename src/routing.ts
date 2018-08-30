@@ -9,7 +9,7 @@ const jwtMiddleware = jwt({ secret: config.get('jwt:secret') });
 const configureGuest = () => {
   const guestRouter = new Router();
   guestRouter.use(configureAuthController());
-  guestRouter.use(configureUserController())
+  guestRouter.use(configureUserController());
   return guestRouter.routes();
 };
 

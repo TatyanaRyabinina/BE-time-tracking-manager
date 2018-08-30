@@ -1,16 +1,15 @@
-import * as HttpStatus from 'http-status-codes'
-import { ValidationErrorItem } from 'sequelize';
 import { ValidationError as ClassValidatorValidationError } from 'class-validator';
+import * as HttpStatus from 'http-status-codes';
+import { ValidationErrorItem } from 'sequelize';
 
-
-interface ValidationErrorDto {
+interface IValidationErrorDto {
   value: string;
   property: string;
   constraints?: object;
   children?: object[];
 }
 
-type ValidationError = ValidationErrorDto | ValidationErrorItem | ClassValidatorValidationError;
+type ValidationError = IValidationErrorDto | ValidationErrorItem | ClassValidatorValidationError;
 
 export class ValidationException extends Error {
   public body: object;
@@ -24,12 +23,12 @@ export class ValidationException extends Error {
     };
   }
 
-  private formatErrors(errors: ValidationError[]): ValidationErrorDto[] | any {
+  private formatErrors(errors: ValidationError[]): IValidationErrorDto[] | any {
     if (!errors[0]) {
       return null;
     }
     if (errors[0] instanceof ValidationErrorItem) {
-      return errors.map<ValidationErrorDto>((error: ValidationErrorItem) => ({
+      return errors.map<IValidationErrorDto>((error: ValidationErrorItem) => ({
         value: error.value,
         property: error.path,
         constraints: {
