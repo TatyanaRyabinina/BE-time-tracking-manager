@@ -1,6 +1,6 @@
 import { IMagicLinkEmailData } from '../mail.interfaces';
 
-export default ({ firstName, lastName, magicLink }: IMagicLinkEmailData) => {
+export default ({ firstName, lastName, link }: IMagicLinkEmailData) => {
   return `
   <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -23,7 +23,7 @@ export default ({ firstName, lastName, magicLink }: IMagicLinkEmailData) => {
       <div class="main-container">
         <h3>Hey ${firstName} ${lastName}! Here is your magic link!</h3>
         <p>For Signing In please follow the link bellow.</p>
-        <a href="${magicLink}">Magic Link</a>
+        <a href="${link}">Magic Link</a>
       </div>
     </body>
   </html>

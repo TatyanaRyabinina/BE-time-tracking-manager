@@ -2,10 +2,10 @@ export interface ISendMailData {
   [key: string]: string;
 }
 
-export interface IMagicLinkEmailData extends ISendMailData{
+export interface IMagicLinkEmailData extends ISendMailData {
   firstName: string;
   lastName: string;
-  magicLink: string;
+  link: string;
 }
 
 export interface IMailResponse {
