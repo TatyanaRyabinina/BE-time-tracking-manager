@@ -19,10 +19,28 @@ module.exports = {
         unique: true
       },
       birthdayDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       hireDate: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATEONLY,
+        allowNull: true,
+      },
+      phoneNumber: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      telegram: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      skype: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      slack: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       departmentId: {
         type: Sequelize.INTEGER,
