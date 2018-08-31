@@ -1,4 +1,4 @@
-import { Model, Column, ForeignKey, HasMany, Table } from 'sequelize-typescript';
+import { Model, Column, Table } from 'sequelize-typescript';
 
 @Table({
   tableName: 'Professions',

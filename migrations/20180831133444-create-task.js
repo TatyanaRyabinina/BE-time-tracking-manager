@@ -2,30 +2,36 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Phones', {
+    return queryInterface.createTable('Tasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      phoneNumber: {
-        type: Sequelize.INTEGER
+      taskName: {
+        type: Sequelize.STRING
       },
-      userId: {
+      projectId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'Projects',
           key: 'id'
         },
         onUpdate: 'cascade',
-        onDelete: 'set null',
+        onDelete: 'cascade',
         allowNull: true
+      },
+      estimate: {
+        type: Sequelize.REAL
+      },
+      deadline: {
+        type: Sequelize.DATEONLY
       }
-    });
+    })
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Phones');
+    return queryInterface.dropTable('Tasks');
   }
 };
