@@ -1,8 +1,8 @@
 import { Model, Column, ForeignKey, Table, AllowNull, Scopes, HasMany } from 'sequelize-typescript';
-import { Department } from './Department';
-import { Profession } from './Profession';
-import { ProfessionalLevels } from './ProfessionalLevel';
-import { UserRole } from './UserRole';
+import Department from './Department';
+import Profession from './Profession';
+import ProfessionalLevels from './ProfessionalLevel';
+import UserRole from './UserRole';
 
 @Scopes({
   withAll: {
