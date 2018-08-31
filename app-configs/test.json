@@ -1,0 +1,22 @@
+{
+  "app": {
+    "port": 8081,
+    "host": "localhost",
+    "prefix": "/v1/"
+  },
+  "jwt": {
+    "secret": "local"
+  },
+  "db": {
+    "username": "root",
+    "password": "root",
+    "database": "time-management",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "mail": {
+    "apiKey": "e59c729c89705f397419253fc984d8da-c1fe131e-99ae891e",
+    "domain": "sandbox9e22ae7a45914cffbfa5ccba03ce3cbe.mailgun.org",
+    "from": "Time Management <time-management@yojji.io>"
+  }
+}
