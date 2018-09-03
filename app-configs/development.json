@@ -4,6 +4,9 @@
     "host": "localhost",
     "prefix": "/v1/"
   },
+  "client": {
+    "hostName": "http://localhost:8080"
+  },
   "jwt": {
     "secret": "local"
   },
@@ -15,8 +18,8 @@
     "dialect": "mysql"
   },
   "mail": {
-    "apiKey": "e59c729c89705f397419253fc984d8da-c1fe131e-99ae891e",
-    "domain": "sandbox9e22ae7a45914cffbfa5ccba03ce3cbe.mailgun.org",
-    "from": "Time Management <time-management@yojji.io>"
+    "apiKey": "d0d26678aa89ce2882bb0f525cdf8dc6-c1fe131e-22be0ce9",
+    "domain": "sandboxa4ab643f14a844e888e89ab01d69be30.mailgun.org",
+    "from": "Time Management <postmaster@sandboxa4ab643f14a844e888e89ab01d69be30.mailgun.org>"
   }
 }

@@ -8,7 +8,8 @@ import UserService from '../users/users.service';
 const verifyUser = async (email: string) => {
   const { firstName, lastName } = await UserService.findUserByEmail(email);
   const magicLink = await create(email);
-  const mailData = { firstName, lastName, magicLink };
+  const link = `${config.get('client:hostName')}/verification?magicLinkToken=${magicLink}&email=${email}`;
+  const mailData = { firstName, lastName, link };
   return sendMail(mailData, email, EMAIL_CONSTANTS.MAGIC_LINK);
 };
 
