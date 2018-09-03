@@ -56,6 +56,52 @@
         }
       }
     },
+    "/user": {
+      "get": {
+        "tags": [
+          "Getting user"
+        ],
+        "description": "Getting user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is received",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update Profile"
+        ],
+        "description": "Update User Profile",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "body",
+            "description": "User",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserBody"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
     "/auth/send-magic-link": {
       "post": {
         "tags": [
@@ -191,11 +237,99 @@
         },
         "birthdayDate": {
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "hireDate": {
           "type": "string",
-          "format": "date-time"
+          "format": "date"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        },
+        "skype": {
+          "type": "string"
+        },
+        "slack": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "departmentId": {
+          "type": "number"
+        },
+        "professionId": {
+          "type": "number"
+        },
+        "professionalLevelId": {
+          "type": "number"
+        }
+      }
+    },
+    "UpdateUserBody": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "birthdayDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "hireDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        },
+        "skype": {
+          "type": "string"
+        },
+        "slack": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "number"
+        },
+        "professionId": {
+          "type": "number"
+        },
+        "professionalLevelId": {
+          "type": "number"
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "roleName": {
+          "type": "string"
         }
       }
     },
