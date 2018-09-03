@@ -1,7 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 import { Context } from 'koa';
 import * as Router from 'koa-router';
-import validateMiddleware from '../../core/middleware/validate.middleware';
+import { validateBody } from '../../core/middleware/validate.middleware';
 import AuthService from './auth.service';
 import { MagicLinkDto } from './dto/magic-link.dto';
 import { TokenDto } from './dto/token.dto';
@@ -21,7 +21,7 @@ const verifyMagicLink = async (ctx: Context) => {
 
 export default () => {
   const authController: Router = new Router();
-  authController.post('/auth/send-magic-link', validateMiddleware(MagicLinkDto, 'body'), sendMagicLink);
-  authController.post('/auth/verify-magic-link', validateMiddleware(TokenDto, 'body'), verifyMagicLink);
+  authController.post('/auth/send-magic-link', validateBody(MagicLinkDto), sendMagicLink);
+  authController.post('/auth/verify-magic-link', validateBody(TokenDto), verifyMagicLink);
   return authController.routes();
 };

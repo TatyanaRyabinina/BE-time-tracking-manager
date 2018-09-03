@@ -1,7 +1,7 @@
 import * as HttpStatus from 'http-status-codes';
 import { Context } from 'koa';
 import * as Router from 'koa-router';
-import validateMiddleware from '../../core/middleware/validate.middleware';
+import { validateBody } from '../../core/middleware/validate.middleware';
 import { IUserJwt } from '../auth/interfaces';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -35,8 +35,8 @@ const updateUser = async (ctx: Context) => {
 
 export default () => {
   const userController: Router = new Router();
-  userController.post('/registration', validateMiddleware(CreateUserDto, 'body'), registerUser);
+  userController.post('/registration', validateBody(CreateUserDto), registerUser);
   userController.get('/user', getUser);
-  userController.put('/user', validateMiddleware(UpdateUserDto, 'body'), updateUser);
+  userController.put('/user', validateBody(UpdateUserDto), updateUser);
   return userController.routes();
 };
