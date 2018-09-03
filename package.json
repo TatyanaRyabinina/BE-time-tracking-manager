@@ -10,6 +10,7 @@
     "tslint": "node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
     "precommit": "yarn tslint",
     "migrate:up": "node_modules/.bin/sequelize db:migrate",
+    "migrate:generate": "node_modules/.bin/sequelize migration:generate --name",
     "migrate:down": "node_modules/.bin/sequelize db:migrate:undo"
   },
   "author": "ildar.kulmuhametov@yojji.io",
