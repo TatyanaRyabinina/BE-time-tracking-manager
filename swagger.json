@@ -27,6 +27,35 @@
     "application/json"
   ],
   "paths": {
+    "/registration": {
+      "post": {
+        "tags": [
+          "Registration"
+        ],
+        "description": "Registration",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "New  User",
+            "schema": {
+              "$ref": "#/definitions/UserRegistration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is created",
+            "schema": {
+              "$ref": "#/definitions/UserRegistration"
+            }
+          }
+        }
+      }
+    },
     "/auth/send-magic-link": {
       "post": {
         "tags": [
@@ -167,6 +196,21 @@
         "hireDate": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "UserRegistration": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
         }
       }
     }
