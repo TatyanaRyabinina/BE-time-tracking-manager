@@ -7,6 +7,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import UserService from './users.service';
 
+const getUser = async (ctx: Context) => {
+  const userJwt = ctx.request.body as IUserJwt;
+  const data = await UserService.findUserByEmail(userJwt.email);
+  ctx.body = {
+    data,
+  };
+};
+
 const registerUser = async (ctx: Context) => {
   const { email, firstName, lastName } = ctx.request.body as CreateUserDto;
   const data = await UserService.createUser({ email, firstName, lastName });
@@ -28,6 +36,7 @@ const updateUser = async (ctx: Context) => {
 export default () => {
   const userController: Router = new Router();
   userController.post('/registration', validateMiddleware(CreateUserDto, 'body'), registerUser);
-  userController.put('/profile', validateMiddleware(UpdateUserDto, 'body'), updateUser);
+  userController.get('/user', getUser);
+  userController.put('/user', validateMiddleware(UpdateUserDto, 'body'), updateUser);
   return userController.routes();
 };
