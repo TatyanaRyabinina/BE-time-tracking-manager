@@ -8,7 +8,7 @@ import {
   IsNumber,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class UpdateUserDto {
   @Length(0, 50)
   public firstName: string;
 
