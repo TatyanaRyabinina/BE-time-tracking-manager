@@ -5,7 +5,7 @@ interface IExceptionBody {
   statusCode: number;
 }
 
-export default class ValidationException extends Error {
+export default class BadRequestException extends Error {
   public body: IExceptionBody;
 
   constructor(message: string) {

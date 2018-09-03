@@ -1,3 +1,4 @@
+import * as HttpStatus from 'http-status-codes';
 import { Context } from 'koa';
 import * as Router from 'koa-router';
 import validateMiddleware from '../../core/middleware/validate.middleware';
@@ -15,7 +16,7 @@ const sendMagicLink = async (ctx: Context) => {
 const verifyMagicLink = async (ctx: Context) => {
   const { email, token } = ctx.request.body as IMagicLinkBody;
   const data = await AuthService.verifyToken(email, token);
-  ctx.status = 200;
+  ctx.status = HttpStatus.OK;;
   ctx.body = { data };
 };
 

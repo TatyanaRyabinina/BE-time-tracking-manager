@@ -70,7 +70,7 @@ export default class User extends Model<User> {
   @AllowNull
   @ForeignKey(() => ProfessionalLevels)
   @Column
-  public professionLevelId: number;
+  public professionalLevelId: number;
 
   @HasMany(() => UserRole)
   public roles: UserRole[];
