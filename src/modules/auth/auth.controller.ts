@@ -16,7 +16,7 @@ const sendMagicLink = async (ctx: Context) => {
 const verifyMagicLink = async (ctx: Context) => {
   const { email, token } = ctx.request.body as IMagicLinkBody;
   const data = await AuthService.verifyToken(email, token);
-  ctx.status = HttpStatus.OK;;
+  ctx.status = HttpStatus.OK;
   ctx.body = { data };
 };
 

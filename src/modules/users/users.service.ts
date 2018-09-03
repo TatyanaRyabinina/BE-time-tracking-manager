@@ -1,6 +1,6 @@
-import { USER_NOT_FOUND, USER_IS_EXIST } from '../../core/constants/error.constants';
 import BadRequestException from '../../core/exceptions/bad-request.exception';
 import NotFoundException from '../../core/exceptions/not-found.exception';
+import { USER_NOT_FOUND, USER_IS_EXIST } from './users.constants';
 
 import User from '../../models/User';
 

@@ -1,9 +1,9 @@
 import * as moment from 'moment';
 import * as generateRandomString from 'uuid/v4';
 import { config } from '../../config';
-import { TOKEN_NOT_FOUND } from '../../core/constants/error.constants';
 import NotFoundException from '../../core/exceptions/not-found.exception';
 import redisClient from '../../redis-connection';
+import { TOKEN_NOT_FOUND } from './redis.constants';
 
 export const create = (email: string): Promise<string> => {
   const token = generateRandomString();

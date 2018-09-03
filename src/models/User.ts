@@ -57,6 +57,9 @@ export default class User extends Model<User> {
   @Column
   public slack: string;
 
+  @Column
+  public avatar: string;
+
   @AllowNull
   @ForeignKey(() => Department)
   @Column
