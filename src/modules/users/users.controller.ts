@@ -5,14 +5,8 @@ import validateMiddleware from '../../core/middleware/validate.middleware';
 import { CreateUserDto } from './dto/create-user.dto';
 import UserService from './users.service';
 
-interface IUserField {
-  email: string;
-  firstName: string;
-  lastName: string;
-}
-
 const registerUser = async (ctx: Context) => {
-  const { email, firstName, lastName } = ctx.request.body as IUserField;
+  const { email, firstName, lastName } = ctx.request.body as CreateUserDto;
   const user = await UserService.createUser({ email, firstName, lastName });
   ctx.status = HttpStatus.OK;
   ctx.body = {
