@@ -1,4 +1,4 @@
-import { Model, Column, ForeignKey, Table, AllowNull, Scopes, HasMany } from 'sequelize-typescript';
+import { Model, Column, ForeignKey, Table, AllowNull, Scopes } from 'sequelize-typescript';
 import Customer from './Customer';
 
 @Scopes({
