@@ -15,9 +15,6 @@ export class UpdateUserDto {
   @Length(0, 50)
   public lastName: string;
 
-  @IsEmpty()
-  public email: undefined;
-
   @ValidateIf((dto) => dto.avatar)
   @IsString()
   public avatar: string;
@@ -52,7 +49,7 @@ export class UpdateUserDto {
   @IsNumber()
   public professionId: number;
 
-  @ValidateIf((dto) => dto.professionLevelId)
+  @ValidateIf((dto) => dto.professionalLevelId)
   @IsNumber()
-  public professionLevelId: number;
+  public professionalLevelId: number;
 }

@@ -1,4 +1,5 @@
 import { WhereOptions } from 'sequelize';
+import { CreateUserDto } from '../../modules/users/dto/create-user.dto';
 
 interface IMockData {
   [key: string]: IMockData | string | number;
@@ -12,5 +13,8 @@ export class BasicMock {
       return this.data;
     }
     return null;
+  }
+  public create(newUser: CreateUserDto) {
+    return newUser;
   }
 }
