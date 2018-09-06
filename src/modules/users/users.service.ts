@@ -1,6 +1,7 @@
 import BadRequestException from '../../core/exceptions/bad-request.exception';
 import NotFoundException from '../../core/exceptions/not-found.exception';
 import User from '../../models/User';
+import UserRole from '../../models/UserRole';
 import { IUserJwt } from '../auth/interfaces';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,7 +11,9 @@ const createUser = async (userData: CreateUserDto): Promise<User> => {
   if (await checkUserIfExist(userData.email)) {
     throw new BadRequestException(USER_IS_EXIST);
   }
-  return User.create(userData);
+  const user = await User.create(userData);
+  await UserRole.create({ userId: user.id });
+  return user;
 };
 
 const checkUserIfExist = async (email: string): Promise<User | boolean> => {
