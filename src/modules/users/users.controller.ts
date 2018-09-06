@@ -9,7 +9,7 @@ import UserService from './users.service';
 
 const getUser = async (ctx: Context) => {
   const userJwt = ctx.request.body as IUserJwt;
-  const data = await UserService.findUserByEmail(userJwt.email);
+  const data = await UserService.findUserBy({ id: userJwt.id });
   ctx.body = {
     data,
   };

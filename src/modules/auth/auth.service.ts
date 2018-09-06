@@ -6,17 +6,19 @@ import { create, validate } from '../redis/redis.service';
 import UserService from '../users/users.service';
 
 const verifyUser = async (email: string) => {
-  const { firstName, lastName } = await UserService.findUserByEmail(email);
+  const { firstName, lastName } = await UserService.findUserBy({ email });
   const magicLink = await create(email);
-  const link = `${config.get('client:hostName')}/verification?magicLinkToken=${magicLink}&email=${email}`;
+  const link = `${config.get('client:hostName')}/verification?&magicLinkToken=${magicLink}&email=${email}`;
   const mailData = { firstName, lastName, link };
   return sendMail(mailData, email, EMAIL_CONSTANTS.MAGIC_LINK);
 };
 
 const verifyToken = async (email: string, magicLink: string) => {
   await validate(email, magicLink);
-  const token = await jwt.sign(email, config.get('jwt:secret'));
-  const user = await UserService.findUserByEmail(email);
+  const user = await UserService.findUserBy({ email });
+  const { id } = user;
+  const token = await jwt.sign({ id, email, roles: [] }, config.get('jwt:secret'));
+
   return {
     token,
     user,
