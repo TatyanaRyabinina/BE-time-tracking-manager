@@ -12,9 +12,6 @@ module.exports = {
       customerName: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.STRING
-      },
       contacts: {
         type: Sequelize.STRING
       },
