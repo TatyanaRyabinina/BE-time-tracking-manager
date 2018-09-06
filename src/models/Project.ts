@@ -1,4 +1,5 @@
 import { Model, Column, ForeignKey, Table, AllowNull, Scopes } from 'sequelize-typescript';
+import { DefinitionProperty } from '../swagger';
 import Customer from './Customer';
 
 @Scopes({
@@ -16,12 +17,15 @@ import Customer from './Customer';
   tableName: 'Projects',
 })
 export default class Project extends Model<Project> {
+  @DefinitionProperty()
   @Column
   public projectName: string;
 
+  @DefinitionProperty()
   @Column
   public description: string;
 
+  @DefinitionProperty()
   @AllowNull
   @ForeignKey(() => Customer)
   @Column
