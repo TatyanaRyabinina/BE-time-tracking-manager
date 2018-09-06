@@ -25,6 +25,7 @@ module.exports = {
           model: 'Roles',
           key: 'id'
         },
+        defaultValue: 1,
         onUpdate: 'cascade',
         onDelete: 'set null',
         allowNull: true
