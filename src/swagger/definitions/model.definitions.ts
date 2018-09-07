@@ -92,6 +92,7 @@ export const createArrayDefinition = (
     throw TypeError('Please provide arrayType to options!');
   }
   const items = getArrayItems(metadata);
+  delete metadata.arrayType;
   addModelDefinition(target.constructor.name, {
     properties: {
       [propertyKey]: {

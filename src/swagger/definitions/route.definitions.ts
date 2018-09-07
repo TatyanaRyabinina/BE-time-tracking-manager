@@ -49,11 +49,12 @@ const createRouteDefinition = ({
   body,
   description,
   params,
-  responses = {}}: any) => {
+  responses = {} }: any) => {
   const existRoute = routeDefinitions[path];
   routeDefinitions = {
-    ...existRoute,
+    ...routeDefinitions,
     [path]: {
+      ...existRoute,
       [method]: {
         description,
         parameters: getParams(body, params),
@@ -63,8 +64,8 @@ const createRouteDefinition = ({
   };
 };
 
-export const getDefinition = (data: any) => createRouteDefinition({ ... data, method: 'get' });
-export const postDefinition = (data: any) => createRouteDefinition({ ... data, method: 'post' });
-export const putDefinition = (data: any) => createRouteDefinition({ ... data, method: 'put' });
-export const patchDefinition = (data: any) => createRouteDefinition({ ... data, method: 'patch' });
-export const deleteDefinition = (data: any) => createRouteDefinition({ ...data, method: 'delete'});
+export const getDefinition = (data: any) => createRouteDefinition({ ...data, method: 'get' });
+export const postDefinition = (data: any) => createRouteDefinition({ ...data, method: 'post' });
+export const putDefinition = (data: any) => createRouteDefinition({ ...data, method: 'put' });
+export const patchDefinition = (data: any) => createRouteDefinition({ ...data, method: 'patch' });
+export const deleteDefinition = (data: any) => createRouteDefinition({ ...data, method: 'delete' });
