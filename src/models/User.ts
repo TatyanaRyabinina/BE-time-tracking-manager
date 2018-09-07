@@ -90,7 +90,7 @@ export default class User extends Model<User> {
   @Column
   public professionalLevelId: number;
 
-  @DefinitionProperty()
+  @DefinitionProperty({ arrayType: UserRole })
   @HasMany(() => UserRole)
   public roles: UserRole[];
 }
