@@ -18,6 +18,6 @@ const validateMiddleware = (ToValidateClass: ClassType<{}>, target: string) => {
   };
 };
 
-export const validateBody = (ToValidateClass: ClassType<{}>) => validateMiddleware(ToValidateClass, 'body');
+export const validateBody = (ToValidateClass: ClassType<{}>) => validateMiddleware(ToValidateClass, 'request.body');
 export const validateParams = (ToValidateClass: ClassType<{}>) => validateMiddleware(ToValidateClass, 'params');
 export const validateQuery = (ToValidateClass: ClassType<{}>) => validateMiddleware(ToValidateClass, 'query');
