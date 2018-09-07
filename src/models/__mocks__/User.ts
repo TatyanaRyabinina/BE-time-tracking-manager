@@ -11,6 +11,7 @@ export const creatingUser = {
 };
 
 export const existingUser = {
+  id: 1,
   email: TEST_USER_EMAIL,
   firstName: 'Ivan',
   lastName: 'Ivanov',

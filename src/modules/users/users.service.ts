@@ -18,7 +18,7 @@ const createUser = async (userData: CreateUserDto): Promise<User> => {
 
 const checkUserIfExist = async (email: string): Promise<User | boolean> => {
   try {
-    return await findUserByEmail(email);
+    return await findUserBy({ email });
   } catch (err) {
     if (err instanceof NotFoundException) {
       return false;
@@ -27,9 +27,9 @@ const checkUserIfExist = async (email: string): Promise<User | boolean> => {
   }
 };
 
-const findUserByEmail = async (email: string): Promise<User> => {
+const findUserBy = async (params: {}): Promise<User> => {
   const user = await User.findOne({
-    where: { email },
+    where: params,
   });
   if (!user) {
     throw new NotFoundException(USER_NOT_FOUND);
@@ -38,12 +38,12 @@ const findUserByEmail = async (email: string): Promise<User> => {
 };
 
 const updateUserProfile = async (profileData: UpdateUserDto, userJwt: IUserJwt): Promise<User> => {
-  const user = await findUserByEmail(userJwt.email);
+  const user = await findUserBy({ id: userJwt.id });
   return user.update(profileData);
 };
 
 export default {
-  findUserByEmail,
+  findUserBy,
   createUser,
   updateUserProfile,
 };
