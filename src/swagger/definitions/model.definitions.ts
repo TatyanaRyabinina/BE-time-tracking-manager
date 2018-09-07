@@ -72,12 +72,7 @@ export const createReferenceDefinition = (
   addModelDefinition(target.constructor.name, {
     properties: {
       [propertyKey]: {
-        type: 'object',
-        schema: {
-          type: 'object',
-          $ref: `#/definitions/${definitionType.name}`,
-        },
-        ...metadata,
+        $ref: `#/definitions/${definitionType.name}`,
       },
     },
   });
