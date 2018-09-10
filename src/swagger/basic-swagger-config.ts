@@ -26,7 +26,7 @@ export default {
   produces: [
     'application/json',
   ],
-  security: {
-    bearer: [],
-  },
+  security: [{
+    Bearer: [],
+  }],
 };
