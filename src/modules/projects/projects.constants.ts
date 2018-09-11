@@ -1,0 +1,2 @@
+export const PROJECT_NOT_FOUND = 'PROJECT_NOT_FOUND';
+export const PROJECT_IS_EXIST = 'PROJECT_IS_EXIST';
