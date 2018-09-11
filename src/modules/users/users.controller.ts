@@ -15,7 +15,7 @@ const getUser = async (ctx: Context) => {
   ctx.body = new UserResponse(data);
 };
 
-putDefinition({ path: '/user', responses: { [HttpStatus.OK]: UserResponse } });
+putDefinition({ path: '/user', body: UpdateUserDto, responses: { [HttpStatus.OK]: UserResponse } });
 const updateUser = async (ctx: Context) => {
   const profileData = ctx.request.body as UpdateUserDto;
   const user = ctx.state.user as IUserJwt;

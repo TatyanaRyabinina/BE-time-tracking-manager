@@ -16,9 +16,8 @@ const verifyUser = async (email: string) => {
 const verifyToken = async (email: string, magicLink: string) => {
   await validate(email, magicLink);
   const user = await UserService.findUserBy({ email });
-  const { id } = user;
-  const token = await jwt.sign({ id, email, roles: [] }, config.get('jwt:secret'));
-
+  const { id, roles } = user;
+  const token = await jwt.sign({ id, email, roles }, config.get('jwt:secret'));
   return {
     token,
     user,

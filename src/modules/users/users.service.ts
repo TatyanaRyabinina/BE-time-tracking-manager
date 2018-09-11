@@ -1,6 +1,6 @@
 import BadRequestException from '../../core/exceptions/bad-request.exception';
 import NotFoundException from '../../core/exceptions/not-found.exception';
-import User from '../../models/User';
+import User, { userScopes } from '../../models/User';
 import UserRole from '../../models/UserRole';
 import { IUserJwt } from '../auth/interfaces';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -28,13 +28,18 @@ const checkUserIfExist = async (email: string): Promise<User | boolean> => {
 };
 
 const findUserBy = async (params: {}): Promise<User> => {
-  const user = await User.findOne({
-    where: params,
-  });
+  const user = await User
+    .scope(userScopes.withAll.toString())
+    .findOne({
+      where: params,
+    });
   if (!user) {
     throw new NotFoundException(USER_NOT_FOUND);
   }
-  return user;
+  return {
+    ...user.toJSON(),
+    roles: user.roles.map((userRole: UserRole) => userRole.role.roleName),
+  };
 };
 
 const updateUserProfile = async (profileData: UpdateUserDto, userJwt: IUserJwt): Promise<User> => {
