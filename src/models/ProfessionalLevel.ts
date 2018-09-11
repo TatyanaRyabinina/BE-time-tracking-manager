@@ -4,8 +4,8 @@ import { DefinitionProperty } from '../swagger';
 @Table({
   tableName: 'ProfessionalLevels',
 })
-export default class ProfessionalLevels extends Model<ProfessionalLevels> {
+export default class ProfessionalLevel extends Model<ProfessionalLevel> {
   @DefinitionProperty()
   @Column
-  public professionLevelName: string;
+  public professionalLevelName: string;
 }
