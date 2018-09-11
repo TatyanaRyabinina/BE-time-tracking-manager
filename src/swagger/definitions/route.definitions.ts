@@ -1,4 +1,16 @@
-let routeDefinitions: any = {};
+interface IResponses { [key: string]: any; }
+
+interface IRouteDefinitionData {
+  path: string;
+  body?: any;
+  description?: string;
+  params?: any;
+  query?: any;
+  responses?: IResponses;
+  method?: string;
+}
+
+let routeDefinitions: {[key: string]: IRouteDefinitionData} = {};
 
 export const getRouteDefinitions = () => routeDefinitions;
 
@@ -6,7 +18,7 @@ export const clearRouteDefinitions = () => {
   routeDefinitions = null;
 };
 
-const getParams = (body: any, params: any) => {
+const getParams = (body: any, params: any, query: any) => {
   const parameters = [];
   if (body) {
     parameters.push({
@@ -26,11 +38,21 @@ const getParams = (body: any, params: any) => {
       },
     });
   }
+
+  if (query) {
+    parameters.push({
+      name: query.name,
+      in: 'query',
+      schema: {
+        $ref: `#/definitions/${query.name}`,
+      },
+    });
+  }
   return parameters;
 };
 
-const getResponses = (responses: any) => {
-  return Object.keys(responses).reduce((acc: any, status: any) => ({
+const getResponses = (responses: IResponses) => {
+  return Object.keys(responses).reduce((acc: any, status: string) => ({
     ...acc,
     [status]: {
       type: 'object',
@@ -49,7 +71,8 @@ const createRouteDefinition = ({
   body,
   description,
   params,
-  responses = {} }: any) => {
+  query,
+  responses = {} }: IRouteDefinitionData) => {
   const existRoute = routeDefinitions[path];
   routeDefinitions = {
     ...routeDefinitions,
@@ -57,15 +80,15 @@ const createRouteDefinition = ({
       ...existRoute,
       [method]: {
         description,
-        parameters: getParams(body, params),
+        parameters: getParams(body, params, query),
         responses: getResponses(responses),
       },
     },
   };
 };
 
-export const getDefinition = (data: any) => createRouteDefinition({ ...data, method: 'get' });
-export const postDefinition = (data: any) => createRouteDefinition({ ...data, method: 'post' });
-export const putDefinition = (data: any) => createRouteDefinition({ ...data, method: 'put' });
-export const patchDefinition = (data: any) => createRouteDefinition({ ...data, method: 'patch' });
-export const deleteDefinition = (data: any) => createRouteDefinition({ ...data, method: 'delete' });
+export const getDefinition = (data: IRouteDefinitionData) => createRouteDefinition({ ...data, method: 'get' });
+export const postDefinition = (data: IRouteDefinitionData) => createRouteDefinition({ ...data, method: 'post' });
+export const putDefinition = (data: IRouteDefinitionData) => createRouteDefinition({ ...data, method: 'put' });
+export const patchDefinition = (data: IRouteDefinitionData) => createRouteDefinition({ ...data, method: 'patch' });
+export const deleteDefinition = (data: IRouteDefinitionData) => createRouteDefinition({ ...data, method: 'delete' });

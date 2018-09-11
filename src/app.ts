@@ -2,7 +2,6 @@ import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
 import * as logger from 'koa-logger';
 import * as cors from 'koa2-cors';
-import * as path from 'path';
 import { config } from './config';
 import exceptionFilter from './core/middleware/exception-filter.middleware';
 import dbConnection from './db-connection';

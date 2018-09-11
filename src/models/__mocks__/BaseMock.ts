@@ -16,4 +16,13 @@ export class BasicMock {
   public create(data: IMockData) {
     return data;
   }
+  public destroy() {
+    return 1;
+  }
+  public bulkCreate(data: IMockData[]) {
+    return data;
+  }
+  public findAll() {
+    return [this.data];
+  }
 }

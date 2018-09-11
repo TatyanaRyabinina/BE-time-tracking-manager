@@ -1,11 +1,17 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('UsersRoles', {
+    return queryInterface.createTable('TimeTracks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+      },
+      time: {
+        type: Sequelize.INTEGER,
+      },
+      trackDate: {
+        type: Sequelize.DATEONLY,
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -17,21 +23,20 @@ module.exports = {
         onDelete: 'cascade',
         allowNull: true
       },
-      roleId: {
+      taskId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Roles',
+          model: 'Tasks',
           key: 'id'
         },
-        defaultValue: 1,
         onUpdate: 'cascade',
-        onDelete: 'set null',
+        onDelete: 'cascade',
         allowNull: true
       },
     });
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('UsersRoles');
+    return queryInterface.dropTable('TimeTracks');
   }
 };

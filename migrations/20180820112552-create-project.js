@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Projects', {
@@ -25,10 +23,10 @@ module.exports = {
         onDelete: 'set null',
         allowNull: true
       },
-    })
+    });
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface.dropTable('Projects');
   }
 };

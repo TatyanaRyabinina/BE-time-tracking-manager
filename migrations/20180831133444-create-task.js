@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Tasks', {
@@ -28,10 +26,10 @@ module.exports = {
       deadline: {
         type: Sequelize.DATEONLY
       }
-    })
+    });
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface.dropTable('Tasks');
   }
 };

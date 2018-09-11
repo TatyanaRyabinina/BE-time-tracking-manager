@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: (queryInterface) => {
     return queryInterface.bulkInsert('Roles', [
@@ -8,6 +7,6 @@ module.exports = {
     ]);
   },
   down: (queryInterface) => {
-    return queryInterface.bulkDelete('Roles')
+    return queryInterface.bulkDelete('Roles');
   }
 };
