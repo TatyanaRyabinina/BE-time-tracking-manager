@@ -2,8 +2,9 @@ import { Model, Column, Table } from 'sequelize-typescript';
 import { DefinitionProperty } from '../swagger';
 
 @Table({
-  tableName: 'Role',
+  tableName: 'Roles',
 })
+
 export default class Role extends Model<Role> {
   @DefinitionProperty()
   @Column

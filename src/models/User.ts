@@ -1,12 +1,17 @@
-import { Model, Column, ForeignKey, Table, AllowNull, Scopes, HasMany } from 'sequelize-typescript';
+import { Model, Column, ForeignKey, Table, AllowNull, Scopes, HasMany, BelongsTo } from 'sequelize-typescript';
 import { DefinitionProperty } from '../swagger';
 import Department from './Department';
 import Profession from './Profession';
-import ProfessionalLevels from './ProfessionalLevel';
-import UserRole from './UserRole';
+import ProfessionalLevel from './ProfessionalLevel';
+import Role from './Role';
+import UserRole, { userRoleScopes } from './UserRole';
+
+export enum userScopes {
+  withAll,
+}
 
 @Scopes({
-  withAll: {
+  [userScopes.withAll]: {
     include: [
       {
         model: () => Department,
@@ -17,12 +22,18 @@ import UserRole from './UserRole';
         required: false,
       },
       {
-        model: () => ProfessionalLevels,
+        model: () => ProfessionalLevel,
         required: false,
       },
       {
         model: () => UserRole,
         required: true,
+        include: [
+          {
+            model: () => Role,
+            attributes: ['roleName'],
+          },
+        ],
       },
     ],
   },
@@ -86,9 +97,18 @@ export default class User extends Model<User> {
 
   @DefinitionProperty()
   @AllowNull
-  @ForeignKey(() => ProfessionalLevels)
+  @ForeignKey(() => ProfessionalLevel)
   @Column
   public professionalLevelId: number;
+
+  @BelongsTo(() => ProfessionalLevel)
+  public professionalLevel: ProfessionalLevel;
+
+  @BelongsTo(() => Department)
+  public department: Department;
+
+  @BelongsTo(() => Profession)
+  public profession: Profession;
 
   @DefinitionProperty({ arrayType: UserRole })
   @HasMany(() => UserRole)
