@@ -36,10 +36,7 @@ const findUserBy = async (params: {}): Promise<User> => {
   if (!user) {
     throw new NotFoundException(USER_NOT_FOUND);
   }
-  return {
-    ...user.toJSON(),
-    roles: user.roles.map((userRole: UserRole) => userRole.role.roleName),
-  };
+  return user;
 };
 
 const updateUserProfile = async (profileData: UpdateUserDto, userJwt: IUserJwt): Promise<User> => {
