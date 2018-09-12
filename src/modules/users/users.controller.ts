@@ -8,14 +8,16 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponse } from './responses/user.response';
 import UserService from './users.service';
 
-getDefinition({ path: '/user', responses: { [HttpStatus.OK]: UserResponse } });
+const path: string = '/user';
+
+getDefinition({ path, responses: { [HttpStatus.OK]: UserResponse } });
 const getUser = async (ctx: Context) => {
   const userJwt = ctx.request.body as IUserJwt;
   const data = await UserService.findUserBy({ id: userJwt.id });
   ctx.body = new UserResponse(data);
 };
 
-putDefinition({ path: '/user', body: UpdateUserDto, responses: { [HttpStatus.OK]: UserResponse } });
+putDefinition({ path, body: UpdateUserDto, responses: { [HttpStatus.OK]: UserResponse } });
 const updateUser = async (ctx: Context) => {
   const profileData = ctx.request.body as UpdateUserDto;
   const user = ctx.state.user as IUserJwt;
@@ -25,7 +27,7 @@ const updateUser = async (ctx: Context) => {
 
 export default () => {
   const userController: Router = new Router();
-  userController.get('/user', getUser);
-  userController.put('/user', validateBody(UpdateUserDto), updateUser);
+  userController.get(path, getUser);
+  userController.put(path, validateBody(UpdateUserDto), updateUser);
   return userController.routes();
 };
