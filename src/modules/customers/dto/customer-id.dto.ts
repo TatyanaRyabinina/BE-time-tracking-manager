@@ -1,8 +1,8 @@
-import { IsNumber } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 import { DefinitionProperty } from '../../../swagger';
 
 export class CustomerIdDto {
   @DefinitionProperty()
-  @IsNumber()
+  @IsNumberString()
   public id: number;
 }
