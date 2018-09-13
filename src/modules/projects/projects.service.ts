@@ -1,6 +1,7 @@
 import NotFoundException from '../../core/exceptions/not-found.exception';
 import Project from '../../models/Project';
 import CustomerService from '../customers/customers.service';
+import { CreateProjectDto } from './dto/create-project.dto';
 import { ProjectDto } from './dto/project.dto';
 import { PROJECT_NOT_FOUND } from './projects.constants';
 
@@ -24,7 +25,7 @@ const findProjectById = async (id: number): Promise<Project> => {
   return project;
 };
 
-const createProject = async (projectData: ProjectDto, customerId: number): Promise<Project> => {
+const createProject = async (projectData: CreateProjectDto, customerId: number): Promise<Project> => {
   await CustomerService.findCustomerById(customerId);
   return Project.create({ ...projectData, customerId });
 };

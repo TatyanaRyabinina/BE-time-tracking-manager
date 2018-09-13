@@ -1,6 +1,6 @@
-import { IsNumber } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 
 export class ProjectIdDto {
-  @IsNumber()
+  @IsNumberString()
   public id: number;
 }
