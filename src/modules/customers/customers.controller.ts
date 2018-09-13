@@ -55,14 +55,13 @@ deleteDefinition({
   path: '/customer/{CustomerIdDto}',
   params: CustomerIdDto,
   responses: {
-    [HttpStatus.OK]: CustomerResponse,
+    [HttpStatus.NO_CONTENT]: {},
   },
 });
 const deleteCustomer = async (ctx: Context) => {
   const { id } = ctx.params as CustomerIdDto;
   const data = await CustomerService.removeCustomer(id);
-  ctx.status = HttpStatus.OK;
-  ctx.body = new CustomerResponse(data);
+  ctx.status = HttpStatus.NO_CONTENT;
 };
 
 export default () => {
