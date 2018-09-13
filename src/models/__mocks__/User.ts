@@ -4,6 +4,10 @@ import { BasicMock } from './BaseMock';
 export const TEST_USER_EMAIL = 'qwerty@qwe.rty';
 export const WRONG_TEST_USER_EMAIL = 'wrongemail@gwe.rty';
 
+export enum userScopes {
+  withAll,
+}
+
 export const creatingUser = {
   email: 'create@user.com',
   firstName: 'TestName',

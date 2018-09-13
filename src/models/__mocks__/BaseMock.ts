@@ -25,4 +25,7 @@ export class BasicMock {
   public findAll() {
     return [this.data];
   }
+  public scope() {
+    return this;
+  }
 }
