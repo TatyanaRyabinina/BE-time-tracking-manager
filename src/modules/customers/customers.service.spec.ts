@@ -3,6 +3,7 @@ import {
   creatingCustomer,
   existingCustomer,
   customerProfileData,
+  CUSTOMER_ID,
 } from '../../models/__mocks__/Customer';
 import CustomerService from './customers.service';
 
@@ -10,7 +11,7 @@ jest.mock('../../models/Customer');
 
 describe('customers.service test', () => {
   it('findCustomerById method success', async () => {
-    const foundCustomer = await CustomerService.findCustomerById(existingCustomer.id);
+    const foundCustomer = await CustomerService.findCustomerById(CUSTOMER_ID);
     expect(foundCustomer.contacts).toEqual(existingCustomer.contacts);
   });
 
@@ -29,12 +30,12 @@ describe('customers.service test', () => {
   });
 
   it('removeCustomer method success', async () => {
-    const removedCustomer = await CustomerService.removeCustomer(existingCustomer.id);
-    expect(removedCustomer).toEqual(1);
+    const removedCustomer = await CustomerService.removeCustomer(CUSTOMER_ID);
+    expect(removedCustomer).toEqual('user was deleted');
   });
 
   it('updateCustomerInfo method success', async () => {
-    const updatedCustomer = await CustomerService.updateCustomerInfo(existingCustomer.id, customerProfileData);
+    const updatedCustomer = await CustomerService.updateCustomerInfo(CUSTOMER_ID, customerProfileData);
     expect(updatedCustomer.customerName).toEqual(customerProfileData.customerName);
   });
 

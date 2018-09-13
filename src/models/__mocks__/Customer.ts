@@ -1,19 +1,21 @@
 import { CustomerDto } from '../../modules/customers/dto/customer.dto';
 import { BasicMock } from './BaseMock';
 
+export const CUSTOMER_ID = 1;
+
 export const creatingCustomer = {
   customerName: 'TestCustomerName',
   contacts: 'test test',
 };
 
 export const existingCustomer = {
-  id: 1,
+  id: CUSTOMER_ID,
   customerName: 'ExistingCustomerName',
   contacts: 'test test',
 };
 
 this.existingCustomer.destroy = () => {
-  return 1;
+  return 'user was deleted';
 };
 
 this.existingCustomer.update = (data: CustomerDto) => {
