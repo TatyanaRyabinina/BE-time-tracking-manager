@@ -7,7 +7,7 @@ import User from './User';
   tableName: 'UsersProjects',
 })
 
-export default class UserRole extends Model<UserRole> {
+export default class UserProject extends Model<UserProject> {
   @DefinitionProperty()
   @ForeignKey(() => User)
   @Column
