@@ -4,6 +4,7 @@ import Department from './Department';
 import Profession from './Profession';
 import ProfessionalLevel from './ProfessionalLevel';
 import Role from './Role';
+import UserProject from './UserProject';
 import UserRole, { userRoleScopes } from './UserRole';
 
 export enum userScopes {
@@ -34,6 +35,10 @@ export enum userScopes {
             attributes: ['roleName'],
           },
         ],
+      },
+      {
+        model: () => UserProject,
+        required: false,
       },
     ],
   },
@@ -113,4 +118,8 @@ export default class User extends Model<User> {
   @DefinitionProperty({ arrayType: UserRole })
   @HasMany(() => UserRole)
   public roles: UserRole[];
+
+  @DefinitionProperty({ arrayType: UserProject })
+  @HasMany(() => UserProject)
+  public projects: UserProject[];
 }

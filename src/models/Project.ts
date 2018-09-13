@@ -2,8 +2,12 @@ import { Model, Column, ForeignKey, Table, AllowNull, Scopes } from 'sequelize-t
 import { DefinitionProperty } from '../swagger';
 import Customer from './Customer';
 
+export enum projectScopes {
+  withAll,
+}
+
 @Scopes({
-  withAll: {
+  [projectScopes.withAll]: {
     include: [
       {
         model: () => Customer,
