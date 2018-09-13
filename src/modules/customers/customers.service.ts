@@ -32,7 +32,8 @@ const updateCustomerInfo = async (id: number, profileData: CustomerDto) => {
 
 const removeCustomer = async (id: number) => {
   const removingCustomer = await findCustomerById(id);
-  return removingCustomer.destroy();
+  await removingCustomer.destroy();
+  return removingCustomer;
 };
 
 export default {
