@@ -12,7 +12,7 @@ const path: string = '/user';
 
 getDefinition({ path, responses: { [HttpStatus.OK]: UserResponse } });
 const getUser = async (ctx: Context) => {
-  const userJwt = ctx.request.body as IUserJwt;
+  const userJwt = ctx.state.user as IUserJwt;
   const data = await UserService.findUserBy({ id: userJwt.id });
   ctx.body = new UserResponse(data);
 };
