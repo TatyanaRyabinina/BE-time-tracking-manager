@@ -1,13 +1,12 @@
 import NotFoundException from '../../core/exceptions/not-found.exception';
 import Project from '../../models/Project';
 import CustomerService from '../customers/customers.service';
-import { CustomerIdDto } from './dto/customer-id.dto';
 import { ProjectDto } from './dto/project.dto';
-import { PROJECT_NOT_FOUND, PROJECT_IS_EXIST } from './projects.constants';
+import { PROJECT_NOT_FOUND } from './projects.constants';
 
-const getAllProjects = async (customerId: CustomerIdDto): Promise<Project[]> => {
+const getAllProjects = async (customerId: number): Promise<Project[]> => {
   const projects = await Project.findAll({
-    where: customerId,
+    where: { customerId },
   });
   if (!projects) {
     throw new NotFoundException(PROJECT_NOT_FOUND);
